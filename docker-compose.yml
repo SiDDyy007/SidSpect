@@ -1,10 +1,10 @@
 version: '3'
 services:
-  sidspect-streamlit:
+  sidspec-streamlit:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: sidspect-streamlit
+    container_name: sidspec-streamlit
     volumes:
       - ./logs:/app/logs:rw
     networks:
@@ -13,9 +13,9 @@ services:
     restart: unless-stopped
     command: /app/run_server.sh
     environment:
-      VIRTUAL_HOST: streamlitsidspect.wanglab.science
+      VIRTUAL_HOST: streamlitsidspec.wanglab.science
       VIRTUAL_PORT: 8501
-      LETSENCRYPT_HOST: streamlitsidspect.wanglab.science
+      LETSENCRYPT_HOST: streamlitsidspec.wanglab.science
       LETSENCRYPT_EMAIL: siddhant.poojary@ucr.edu
 networks:
   nginx-net:
