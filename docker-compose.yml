@@ -1,10 +1,10 @@
 version: '3'
 services:
-  SidSpect-streamlit:
+  sidspect-streamlit:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: SidSpect-streamlit
+    container_name: sidspect-streamlit
     volumes:
       - ./logs:/app/logs:rw
     networks:
