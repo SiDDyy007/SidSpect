@@ -2,4 +2,4 @@ version: '3'
 services:
   sidspect-streamlit:
     ports:
-    - "5000:5000"
+    - "8501:5000"
