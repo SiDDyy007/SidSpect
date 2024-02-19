@@ -4,20 +4,24 @@ import plotly.express as px
 from wikipathways_processing import get_metabolites_from_wikipathways  
 
 # Load the Redu file
-redu_df = pd.read_csv('Redu_Latest.tsv', sep='\t')
-redu_df = redu_df.drop_duplicates()
-wang_df = pd.read_csv('Redu_all_sampleinformation.tsv', sep='\t')
+@st.cache_data
+def get_datasets():
+    st.title("SidSpec @ Wang Bioinformatics Lab")
+    st.image('sidspec_logo.png', width=100)
+    t1 = pd.read_csv('Redu_Latest.tsv', sep='\t').drop_duplicates()
+    t2 = pd.read_csv('Redu_all_sampleinformation.tsv', sep='\t')
+    return (t1, t2)
 
-st.title("Wang Bioinformatics Lab")
-st.subheader('Inchi Key Finder')
-st.image('sidspec_logo.png', width=100)
+#Get metabolites from WikiPathway
+@st.cache_data
+def get_metabolites(wikipath_id):
+    return get_metabolites_from_wikipathways(wikipath_id)
 
-# User input for WikiPathways ID
+redu_df, wang_df = get_datasets()
 wp_id = st.text_input('Enter the WikiPathways ID:')
 
 if wp_id:
-    # Get the filtered DataFrame from WikiPathways
-    wp_df = get_metabolites_from_wikipathways(wp_id)
+    wp_df = get_metabolites(wp_id)
 
     # Check if 'InChI' column exists and is not empty
     if 'InChI' in wp_df.columns and not wp_df['InChI'].empty:
@@ -33,11 +37,11 @@ if wp_id:
         # Count the number of files for each InChIKey in wp_df_filtered
         inchikey_file_counts = {label_inchikey: redu_df[redu_df['full_inchi_key'] == label_inchikey.split(' (')[-1].strip(')')]['filename'].nunique() 
                                 for label_inchikey in wp_df_filtered['Label_InChIKey'].unique()}
+        
 
         # Sort the dictionary by count in descending order
         inchikey_file_counts = sorted(inchikey_file_counts.items(), key=lambda item: item[1], reverse=True)
 
-        # st.write(wp_df_filtered['InChI'])
         # Display the count information
         st.write("Click on an InChIKey to view details:")
         for label_inchikey, count in inchikey_file_counts:
