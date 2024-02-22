@@ -22,7 +22,7 @@ __Install Dependencies:__
 
 __Download Datasets__
 
-* Download the required GNPS/ReDU dataset from [link to dataset (Zenodo)]
+* Download the required GNPS/ReDU dataset from [https://zenodo.org/records/10694932] [https://zenodo.org/records/10694954]
 * Place the downloaded datasets in the root directory of the project.
 
 __Running the Application__
