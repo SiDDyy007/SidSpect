@@ -8,7 +8,7 @@ from wikipathways_processing import get_metabolites_from_wikipathways
 def get_datasets():
     st.title("SidSpec @ Wang Bioinformatics Lab")
     st.image('sidspec_logo.png', width=100)
-    t1 = pd.read_csv('Redu_Latest.tsv', sep='\t').drop_duplicates()
+    t1 = pd.read_csv('Redu_all_identifications.tsv', sep='\t').drop_duplicates()
     t2 = pd.read_csv('Redu_all_sampleinformation.tsv', sep='\t')
     return (t1, t2)
 
