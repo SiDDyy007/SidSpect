@@ -22,8 +22,7 @@ __Install Dependencies:__
 
 __Download Datasets__
 
-* Download the required GNPS/ReDU dataset from [link to dataset]
-* Download any necessary WikiPathways data from [link to WikiPathways]
+* Download the required GNPS/ReDU dataset from [link to dataset (Zenodo)]
 * Place the downloaded datasets in the root directory of the project.
 
 __Running the Application__
